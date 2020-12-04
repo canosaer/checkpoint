@@ -19,65 +19,48 @@
 		<h1 class="header__title">Checkpoint!</h1>
 	</header>
 
-	<section class="display">
+	<section class="top-row">
 		<div class="booth">
+			<div class="timer">60</div>
 			<figure class="booth__entrant"></figure>
-			<p class="booth__dialogue">"I'm here for work."</p>
+			<p class="booth__dialogue">"I'm here for work and to kill puppies. I'm here for work and to kill puppies. I'm here for work and to"</p>
 			<div class="booth__passport"></div>
 		</div>
-		<div class="passport">
-			<div class="passport__inner">
-				<section class="passport__upper">
-					<div class="passport__stamp-box"></div>
-					<h1 class="passport__heading">Entry Visa</h1>
-				</section>
-				<section class="passport__lower">
-					<p class="passport__name">Williams, Michael</p>
-					<div class="passport__main-content">
-						<figure class="passport__photo"></figure>
-						<div class="passport__info">
-							<section class="passport__row">
-								<h2 class="passport__detail">DOB.</h2>
-								<p class="passport__dob">08.08.1983</p>
-							</section>
-							<section class="passport__row">
-								<h2 class="passport__detail">SEX</h2>
-								<p class="passport__sex">M</p>
-							</section>
-							<section class="passport__row">
-								<h2 class="passport__detail">ISS.</h2>
-								<p class="passport__iss">Orvech Vonor</p>
-							</section>
-							<section class="passport__row">
-								<h2 class="passport__detail">EXP.</h2>
-								<p class="passport__exp">29.07.1984</p>
-							</section>
-							<p class="passport__country">ARSTOTZKA</p>
+		<div class="side-content">
+			<section class="passport">
+				<div class="passport__inner">
+					<section class="passport__upper">
+						<div class="passport__stamp-box"></div>
+						<h1 class="passport__heading">Entry Visa</h1>
+					</section>
+					<section class="passport__lower">
+						<p class="passport__country">Obristan</p>
+						<p class="passport__name">Williams, Michael</p>
+						<div class="passport__main-content">
+							<figure class="passport__photo"></figure>
+							<div class="passport__info">
+								<section class="passport__row">
+									<h2 class="passport__detail">DOB:</h2>
+									<p class="passport__dob">08.08.1983</p>
+								</section>
+								<section class="passport__row">
+									<h2 class="passport__detail">SEX:</h2>
+									<p class="passport__sex">M</p>
+								</section>
+								<section class="passport__row">
+									<h2 class="passport__detail">ISS:</h2>
+									<p class="passport__iss">Yurko City</p>
+								</section>
+								<section class="passport__row">
+									<h2 class="passport__detail">EXP:</h2>
+									<p class="passport__exp">29.07.1984</p>
+								</section>
+							</div>
 						</div>
-					</div>
-					<div class="passport__bottom">
-						<p class="passport__number">Q1E1P-PMGVA</p>
-						<div class="passport__line"></div>
-					</div>
-				</section>
-			</div>
-		</div>
-		<div class="interact">
-			<section class="cities">
-				<div class="cities__books">
-					<h1 class="cities__heading">Issuing Cities</h1>
-					<figure class="cities__book cities__book_obristan">Obristan</figure>
-					<figure class="cities__book cities__book_kolechia">Kolechia</figure>
-					<figure class="cities__book cities__book_antegria">Antegria</figure>
-				</div>
-				<div class="cities__display">
-					<h2 class="cities__country">Obristan</h2>
-					<h3 class="cities__valid-cities">Valid Issuing Cities</h3>
-					<ul class="cities__list">
-						<li class="cities__entry">Skal</li>
-						<li class="cities__entry">Lorndaz</li>
-						<li class="cities__entry">Mergerous</li>
-					</ul>
+						<div class="passport__bottom">
+							<p class="passport__number">Q1E1P-PMGVA</p>
+						</div>
+					</section>
 				</div>
 			</section>
 			<section class="resolution">
@@ -94,14 +77,38 @@
 					</figure>
 				</div>
 			</section>
-			<section class="bottom-row">
-				<figure class="stamps">
-					<div class="cross">X</div>
-					<div class="check">&check;</div>
-				</figure>
-				<div class="timer"></div>
+			<figure class="stamps">
+				<div class="stamps__cross">X</div>
+				<div class="stamps__check">&check;</div>
+			</figure>
 			</section>
 		</div>
+	</section>
+	<section class="reference">
+		<p class="reference__date">Today's Date: 14.12.1982</p>
+		<section class="cities">
+			<div class="cities__books">
+				<h1 class="cities__heading">Issuing Cities</h1>
+				<figure class="cities__book cities__book_obristan">
+					<p class="cities__title">Obristan</p>
+				</figure>
+				<figure class="cities__book cities__book_kolechia">
+					<p class="cities__title">Kolechia</p>
+				</figure>
+				<figure class="cities__book cities__book_antegria">
+					<p class="cities__title">Antegria</p>
+				</figure>
+			</div>
+			<div class="cities__display">
+				<h2 class="cities__country">Obristan</h2>
+				<h3 class="cities__valid-cities">Valid Issuing Cities</h3>
+				<ul class="cities__list">
+					<li class="cities__entry">&bull; Skal</li>
+					<li class="cities__entry">&bull; Lorndaz</li>
+					<li class="cities__entry">&bull; Mergerous</li>
+				</ul>
+			</div>
+		</section>
 	</section>
 
 	<script src="dist/js/main.js"></script>

@@ -1,14 +1,13 @@
 /* 
 ==============================================
-CONTENT:	Project Name Here
-AUTHOR:		Your Name Here
+CONTENT:	Checkpoint!
+AUTHOR:		Eric Canosa
 ==============================================
 
 TABLE OF CONTENTS:
 
 0. Reset
-1. Main Layout
-2. Content
+1. STYLES
 
 ==============================================
 */
@@ -148,9 +147,264 @@ table {
 	border-spacing: 0;
 }
 
-/* 1. Main Layout ================================= */
+/* 1. STYLES ================================= */
+
+body{
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', cursive;
+	background-color: #b5b5b5;
+	display: flex;
+	flex-direction: column;
+}
+
+.header{
+	display:flex;
+	justify-content: center;
+	padding: 7vh 0vw;
+}
+
+.header__title{
+	font-size: 1.5rem;
+}
+
+.top-row{
+	display: flex;
+	margin: 0% auto;
+}
+
+.booth{
+	background: url(../../dist/img/booth.png);
+	background-size: cover;
+	background-position: center;
+	width: 356px;
+	height: 435px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.booth__entrant{
+	background: url(../../dist/img/entrants/fur_hat.png);
+	background-size: cover;
+	background-position: center;
+	margin-top: 5px;
+	width: 210px;
+	height: 210px;
+}
+
+.booth__dialogue{
+	margin-top: 45px;
+	padding: 0px 10px;
+	font-size: 0.75rem;
+	text-align: center;
+	line-height: 1.4;
+	font-weight: bold;
+}
+
+.booth__passport{
+	margin: 0px 0px 0px 150px;	
+	width: 55px;
+	height: 70px;
+	border: 2px solid red;
+	position: absolute;
+	bottom: 10px;
+}
+
+.side-content{
+	margin-left: 2.5vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.passport{
+	border: 7px solid #3c483b;
+	width: 248px;
+	margin: 15px 0px;
+}
+
+.passport__inner{
+	border-left: 5px solid #a19490;
+	border-bottom: 5px solid #a19490;
+	height: 312px;
+	background-color: #ece0d8;
+}
+
+.passport__upper{
+	height: 50%;
+	border-bottom: 10px double #564848;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.passport__stamp-box{
+	width: 65%;
+	height: 50%;
+	border: 5px dashed #ac9809;
+	margin: 12.5px 0px;
+}
+
+.passport__heading{
+	color: #b19600;
+	text-transform: uppercase;
+}
+
+.passport__lower{
+	font-size: 0.75rem;
+	padding: 10px 4px;
+}
+
+.passport__main-content{
+	margin: 10px 0px;
+	display: flex;
+	align-items: center;
+}
+
+.passport__photo{
+	background: url(../../dist/img/photos/big_forehead_photo.png);
+	background-color: #a29490;
+	width: 75px;
+	height: 60px;
+	display: flex;
+	background-size: cover;
+	background-position: top;
+	margin-right: 4px;
+}
+
+.passport__info{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 60px;
+}
+
+.passport__row{
+	display: flex;
+}
+
+.passport__country{
+	text-transform: uppercase;
+	text-align: center;
+	color: #a29490;
+	font-size: 1rem;
+	margin-bottom: 7px;
+}
+
+.passport__name{
+	margin-bottom: 7px;
+}
+
+.passport__line{
+	height: 0px;
+	border: 1.5px dashed #a19490;
+	align-self: center;
+	width: 18%;
+}
+
+.resolution{
+	display: none;
+}
+
+.stamps{
+	background: url(../../dist/img/stamps.png);
+	height: 74px;
+	width: 286px;
+	display: flex;
+}
+
+.stamps__cross{
+	margin: 3px 0px 0px 41px;
+	border: 2px solid red;
+	font-size: 2.5rem;
+	text-align:center;
+	line-height: 1.5;
+	color: red;
+	padding: 0px 16px;
+}
+
+.stamps__check{
+	margin: 3px 0px 0px 46px;
+	border: 2px solid white;
+	font-size: 2.5rem;
+	text-align:center;
+	line-height: 1.2;
+	color: white;
+	padding: 0px 21px;
+	font-weight: bold;
+}
+
+.timer{
+	font-size: 2.25rem;
+	margin-bottom: 4px;
+	position: absolute;
+	color: white;
+	left: 15px;
+	top: 15px;
+}
+
+.reference{
+	display: flex;
+	flex-direction: column;
+	margin: 20px auto;
+	width: 658px;
+	font-size: 0.875rem;
+}
+
+.reference__date{
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.cities{
+	display: flex;
+}
+
+.cities__heading{
+	margin-bottom: 10px;
+
+}
+
+.cities__book{
+	width: 150px;
+	height: 150px;
+	background: url(../../dist/img/book.png);
+	background-size: cover;
+	background-position: center;
+	border: 2px solid red;
+	margin-bottom: 10px;
+}
+
+.cities__title{
+	font-size: 0.55rem;
+	padding: 40px 0px 0px 50px;
+}
+
+.cities__display{
+	margin-top: 25px;
+	width: 70%;
+	height: 560px;
+	background: url(../../dist/img/journal.png);
+	background-size: cover;
+	background-position: center;
+	font-family: 'Rock Salt', cursive;
+	font-weight: bold;
+}
+
+.cities__country{
+	margin: 5px 0px 24px 35px;
+	font-size: 1.5rem;
+}
+
+.cities__valid-cities{
+	margin: 0px 0px 5px 40px;
+}
+
+.cities__entry{
+	margin: 0px 0px 6px 45px;
+}
 
 
-
-/* font-family: 'Press Start 2P', cursive; */
 /* font-family: 'Rock Salt', cursive; */
