@@ -7,7 +7,9 @@
 	<title> Checkpoint! </title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="dist/css/main.css">
 
 </head>
@@ -19,12 +21,8 @@
 
 	<section class="display">
 		<div class="booth">
-			<section class="booth__upper">
-				<div class="booth__return">&lt;</div>
-				<figure class="booth__entrant"></figure>
-				<div class="booth__advance">&gt;</div>
-			</section>
-			<p class="booth__dialogue"></p>
+			<figure class="booth__entrant"></figure>
+			<p class="booth__dialogue">"I'm here for work."</p>
 			<div class="booth__passport"></div>
 		</div>
 		<div class="passport">
@@ -64,7 +62,46 @@
 				</section>
 			</div>
 		</div>
-
+		<div class="interact">
+			<section class="cities">
+				<div class="cities__books">
+					<h1 class="cities__heading">Issuing Cities</h1>
+					<figure class="cities__book cities__book_obristan">Obristan</figure>
+					<figure class="cities__book cities__book_kolechia">Kolechia</figure>
+					<figure class="cities__book cities__book_antegria">Antegria</figure>
+				</div>
+				<div class="cities__display">
+					<h2 class="cities__country">Obristan</h2>
+					<h3 class="cities__valid-cities">Valid Issuing Cities</h3>
+					<ul class="cities__list">
+						<li class="cities__entry">Skal</li>
+						<li class="cities__entry">Lorndaz</li>
+						<li class="cities__entry">Mergerous</li>
+					</ul>
+				</div>
+			</section>
+			<section class="resolution">
+				<p class="resolution__text">The man is grateful.</p>
+				<button class="proceed">Next Entrant</button>
+				<div class="aggregate">
+					<h1 class="aggregate__heading">Aggregate Responses</h1>
+					<figure class="aggregate__graph">
+						<p class="aggregate__number-denied">10</p>
+						<div class="aggregate__denied-bar">
+							<div class="aggregate__approved-bar"></div>
+						</div>
+						<p class="aggregate__number-approved">10</p>
+					</figure>
+				</div>
+			</section>
+			<section class="bottom-row">
+				<figure class="stamps">
+					<div class="cross">X</div>
+					<div class="check">&check;</div>
+				</figure>
+				<div class="timer"></div>
+			</section>
+		</div>
 	</section>
 
 	<script src="dist/js/main.js"></script>
