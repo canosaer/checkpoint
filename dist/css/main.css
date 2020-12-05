@@ -209,6 +209,7 @@ body{
 	border: 2px solid red;
 	position: absolute;
 	bottom: 10px;
+	cursor: pointer;
 }
 
 .side-content{
@@ -222,6 +223,7 @@ body{
 	border: 7px solid #3c483b;
 	width: 248px;
 	margin: 15px 0px;
+	display: none;
 }
 
 .passport__inner{
@@ -305,7 +307,10 @@ body{
 }
 
 .resolution{
-	display: none;
+	display: flex;
+	flex-direction: column;
+	font-size: 0.875rem;
+	width: 286px;
 }
 
 .stamps{
@@ -323,6 +328,7 @@ body{
 	line-height: 1.5;
 	color: red;
 	padding: 0px 16px;
+	cursor: pointer;
 }
 
 .stamps__check{
@@ -334,6 +340,7 @@ body{
 	color: white;
 	padding: 0px 21px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .timer{
@@ -375,6 +382,7 @@ body{
 	background-position: center;
 	border: 2px solid red;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .cities__title{
