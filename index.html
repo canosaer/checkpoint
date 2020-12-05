@@ -18,12 +18,17 @@
 	<header class="header">
 		<h1 class="header__title">Checkpoint!</h1>
 	</header>
-
+	<section class="intro">
+		<p class="intro__paragraph">Checkpoint is a game inspired by the indie hit, "Papers, Please." In checkpoint, you assume the role of a border agent in the fictional Eastern European country of Obristan circa 1982. Each round, an entrant will arrive at the border checkpoint and you will have 60 seconds to read what they have to say at the checkpoint, examine their passport, consult reference material, and decide whether to approve or deny their admission to Obristan.</p>
+		<p class="intro__paragraph">When deciding whether to approve or deny admission, be sure to read what they have to say and check the details on their passport. The reference section includes today's date to check against the expiration date on their passport, as well as valid passport issuing cities for Obristan and the neighboring countries of Kolechia and Alegria.</p>
+		<p class="intro__paragraph">When you're ready, click the button below to begin. You'll have 60 seconds to decide whether to approve or deny the first entrant!</p>
+		<button class="begin">Begin!</button>
+	</section>
 	<section class="top-row">
 		<div class="booth">
-			<div class="timer">60</div>
+			<div class="timer"></div>
 			<figure class="booth__entrant"></figure>
-			<p class="booth__dialogue">"I'm here for work and to kill puppies. I'm here for work and to kill puppies. I'm here for work and to"</p>
+			<p class="booth__dialogue"></p>
 			<div class="booth__passport"></div>
 		</div>
 		<div class="side-content">
@@ -34,47 +39,50 @@
 						<h1 class="passport__heading">Entry Visa</h1>
 					</section>
 					<section class="passport__lower">
-						<p class="passport__country">Obristan</p>
-						<p class="passport__name">Williams, Michael</p>
+						<p class="passport__country"></p>
+						<p class="passport__name"></p>
 						<div class="passport__main-content">
 							<figure class="passport__photo"></figure>
 							<div class="passport__info">
 								<section class="passport__row">
 									<h2 class="passport__detail">DOB:</h2>
-									<p class="passport__dob">08.08.1983</p>
+									<p class="passport__dob"></p>
 								</section>
 								<section class="passport__row">
 									<h2 class="passport__detail">SEX:</h2>
-									<p class="passport__sex">M</p>
+									<p class="passport__sex"></p>
 								</section>
 								<section class="passport__row">
 									<h2 class="passport__detail">ISS:</h2>
-									<p class="passport__iss">Yurko City</p>
+									<p class="passport__iss"></p>
 								</section>
 								<section class="passport__row">
 									<h2 class="passport__detail">EXP:</h2>
-									<p class="passport__exp">29.07.1984</p>
+									<p class="passport__exp"></p>
 								</section>
 							</div>
 						</div>
 						<div class="passport__bottom">
-							<p class="passport__number">Q1E1P-PMGVA</p>
+							<p class="passport__number"></p>
 						</div>
 					</section>
 				</div>
 			</section>
 			<section class="resolution">
-				<p class="resolution__text">The man is grateful. The man is grateful. The man is grateful. The man is grateful.</p>
-				<button class="proceed">Next Entrant</button>
-				<div class="aggregate">
-					<h1 class="aggregate__heading">Aggregate Responses</h1>
-					<figure class="aggregate__graph">
-						<p class="aggregate__number-denied">10</p>
-						<div class="aggregate__denied-bar">
-							<div class="aggregate__approved-bar"></div>
-						</div>
-						<p class="aggregate__number-approved">10</p>
-					</figure>
+				<h1 class="resolution__heading">Resolution</h1>
+				<p class="resolution__text"></p>
+				<div class="resolution__bottom">
+					<button class="proceed">Next Entrant</button>
+					<div class="aggregate">
+						<h2 class="aggregate__heading">Aggregate Responses</h1>
+						<figure class="aggregate__graph">
+							<p class="aggregate__number-denied"></p>
+							<div class="aggregate__denied-bar">
+								<div class="aggregate__approved-bar"></div>
+							</div>
+							<p class="aggregate__number-approved"></p>
+						</figure>
+					</div>
 				</div>
 			</section>
 			<figure class="stamps">
@@ -88,7 +96,7 @@
 		<p class="reference__date">Today's Date: 14.12.1982</p>
 		<section class="cities">
 			<div class="cities__books">
-				<h1 class="cities__heading">Issuing Cities</h1>
+				<h1 class="cities__heading">Issuing Cities <span class="cities__expand">&gt;&lt;</span></h1>
 				<figure class="cities__book cities__book_obristan">
 					<p class="cities__title">Obristan</p>
 				</figure>
@@ -100,12 +108,12 @@
 				</figure>
 			</div>
 			<div class="cities__display">
-				<h2 class="cities__country">Obristan</h2>
+				<h2 class="cities__country"></h2>
 				<h3 class="cities__valid-cities">Valid Issuing Cities</h3>
 				<ul class="cities__list">
-					<li class="cities__entry">&bull; Skal</li>
-					<li class="cities__entry">&bull; Lorndaz</li>
-					<li class="cities__entry">&bull; Mergerous</li>
+					<li class="cities__entry"></li>
+					<li class="cities__entry"></li>
+					<li class="cities__entry"></li>
 				</ul>
 			</div>
 		</section>

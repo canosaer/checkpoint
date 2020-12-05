@@ -157,6 +157,32 @@ body{
 	flex-direction: column;
 }
 
+.intro{
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	padding: 2vh 2vw;
+	width: 90%;
+	margin: 0% auto;
+	font-size: 0.875rem;
+	line-height: 1.4rem;
+}
+
+.intro__paragraph{
+	margin-bottom: 2vh;
+}
+
+.begin{
+	background-color: blue;
+	color: white;
+	width: 150px;
+	padding: 1.5vh 0vw;
+	font-size: 0.875rem;
+	font-family: 'Press Start 2P', cursive;
+	margin: 0% auto;
+	cursor: pointer;
+}
+
 .header{
 	display:flex;
 	justify-content: center;
@@ -168,7 +194,7 @@ body{
 }
 
 .top-row{
-	display: flex;
+	display: none;
 	margin: 0% auto;
 }
 
@@ -206,11 +232,15 @@ body{
 	margin: 0px 0px 0px 150px;	
 	width: 55px;
 	height: 70px;
-	border: 2px solid red;
 	position: absolute;
 	bottom: 10px;
 	cursor: pointer;
 }
+
+.booth__passport:hover{
+	border: 2px solid red;
+}
+
 
 .side-content{
 	margin-left: 2.5vw;
@@ -223,7 +253,9 @@ body{
 	border: 7px solid #3c483b;
 	width: 248px;
 	margin: 15px 0px;
-	display: none;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
 }
 
 .passport__inner{
@@ -306,13 +338,6 @@ body{
 	width: 18%;
 }
 
-.resolution{
-	display: flex;
-	flex-direction: column;
-	font-size: 0.875rem;
-	width: 286px;
-}
-
 .stamps{
 	background: url(../../dist/img/stamps.png);
 	height: 74px;
@@ -329,6 +354,12 @@ body{
 	color: red;
 	padding: 0px 16px;
 	cursor: pointer;
+	opacity: 0;
+	display: none;
+}
+
+.stamps__cross:hover{
+	opacity: 1;
 }
 
 .stamps__check{
@@ -341,6 +372,12 @@ body{
 	padding: 0px 21px;
 	font-weight: bold;
 	cursor: pointer;
+	opacity: 0;
+	display: none;
+}
+
+.stamps__check:hover{
+	opacity: 1;
 }
 
 .timer{
@@ -353,7 +390,7 @@ body{
 }
 
 .reference{
-	display: flex;
+	display: none;
 	flex-direction: column;
 	margin: 20px auto;
 	width: 658px;
@@ -371,7 +408,15 @@ body{
 
 .cities__heading{
 	margin-bottom: 10px;
+	border: 2px solid black;
+	padding: 1vh 1vw;
+	background-color: #d2edec;
+	cursor: pointer;
+	user-select: none;
+}
 
+.cities__expand{
+	font-weight: bold;
 }
 
 .cities__book{
@@ -380,9 +425,14 @@ body{
 	background: url(../../dist/img/book.png);
 	background-size: cover;
 	background-position: center;
-	border: 2px solid red;
 	margin-bottom: 10px;
 	cursor: pointer;
+	border: 2px solid rgba(255,255,255,0);
+	display: none;
+}
+
+.cities__book:hover{
+	border: 2px solid red;
 }
 
 .cities__title{
@@ -399,6 +449,8 @@ body{
 	background-position: center;
 	font-family: 'Rock Salt', cursive;
 	font-weight: bold;
+	display: none;
+	flex-direction: column;
 }
 
 .cities__country{
@@ -413,6 +465,74 @@ body{
 .cities__entry{
 	margin: 0px 0px 6px 45px;
 }
+
+.resolution{
+	display: none;
+	flex-direction: column;
+	font-size: 0.875rem;
+	width: 286px;
+	height: 100%;
+}
+
+.resolution__heading{
+	text-align: center;
+	font-size: 1.125rem;
+	margin-bottom: 15px;
+}
+
+.resolution__bottom{
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.aggregate{
+	margin-bottom: 10px;
+}
+
+.aggregate__heading{
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.aggregate__graph{
+	display: flex;
+	align-items: center;
+}
+
+.aggregate__denied-bar{
+	width: 100%;
+	height: 15px;
+	background: red;
+	display: flex;
+}
+
+.aggregate__approved-bar{
+	height: 100%;
+	width: 50%;
+	background: green;
+	margin-left: auto;
+}
+
+.aggregate__number-denied{
+	margin-right: 5px;
+}
+
+.aggregate__number-approved{
+	margin-left: 5px;
+}
+
+.proceed{
+	margin: 0px auto 55px;
+	background-color: blue;
+	color: white;
+	font-size: 0.875rem;
+	font-family: 'Press Start 2P', cursive;
+	padding: 10px;
+	cursor: pointer;
+}
+
+
 
 
 /* font-family: 'Rock Salt', cursive; */
