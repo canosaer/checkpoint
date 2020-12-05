@@ -211,12 +211,13 @@ body{
 }
 
 .booth__entrant{
-	background: url(../../dist/img/entrants/fur_hat.png);
+	/* background: url(../../dist/img/entrants/fur_hat.png); */
 	background-size: cover;
 	background-position: center;
 	margin-top: 5px;
 	width: 210px;
 	height: 210px;
+	transition: all 2s ease-out;
 }
 
 .booth__dialogue{
@@ -226,6 +227,14 @@ body{
 	text-align: center;
 	line-height: 1.4;
 	font-weight: bold;
+}
+
+.booth__reset{
+	margin: 0px 0px 0px 5px;	
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	bottom: 20px;
 }
 
 .booth__passport{
@@ -298,7 +307,7 @@ body{
 }
 
 .passport__photo{
-	background: url(../../dist/img/photos/big_forehead_photo.png);
+	/* background: url(../../dist/img/photos/big_forehead_photo.png); */
 	background-color: #a29490;
 	width: 75px;
 	height: 60px;
@@ -441,8 +450,8 @@ body{
 }
 
 .cities__display{
-	margin-top: 25px;
-	width: 70%;
+	margin-top: 50px;
+	width: 50%;
 	height: 560px;
 	background: url(../../dist/img/journal.png);
 	background-size: cover;
