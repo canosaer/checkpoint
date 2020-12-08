@@ -34,9 +34,14 @@ let approveStampDIV = document.querySelector(`.passport__approve-stamp`)
 let resolutionSECTION = document.querySelector(`.resolution`)
 let resolutionP = document.querySelector(`.resolution__text`)
 let resetDIV = document.querySelector(`.booth__reset`)
+let numberDeniedP = document.querySelector(`.aggregate__number-denied`)
+let numberApprovedP = document.querySelector(`.aggregate__number-approved`)
+let approvedBarDIV = document.querySelector(`.aggregate__approved-bar`)
 
 var decision = `none`
 var level = 1
+var approved = 0
+var denied = 0
 
 let displayCount = function(number){
     timerDIV.textContent = number
@@ -70,8 +75,8 @@ let updatePhoto = function(photo){
 
 let levelOne = function(){
     startTimer()
-    entrantFIGURE.style.background = `url(../../dist/img/entrants/fur_hat.png)`
-    updatePhoto(`url(../../dist/img/photos/big_forehead_photo.png)`)
+    entrantFIGURE.style.background = `url(dist/img/entrants/fur_hat.png)`
+    updatePhoto(`url(dist/img/photos/big_forehead_photo.png)`)
     passportCountryP.textContent = `Obristan`
     nameP.textContent = `Ludum, Dari`
     dobP.textContent = `10.08.1946`
@@ -90,7 +95,17 @@ let resolveLevel = function(){
             resolutionP.textContent = `"Thank you." The man proceeds beyond the checkpoint with an authoritative air about him.`
         }
         decision = `none`
-
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+        })
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
+            approved = response.data.data.value
+            numberApprovedP.textContent = approved
+            let approvedWidth = (approved / (approved+denied))*100
+            approvedBarDIV.style.width = `${approvedWidth}%`
+        })
+        
     }
 }
 
@@ -157,6 +172,10 @@ antegriaBookFIGURE.addEventListener(`click`, function(){
 
 crossDIV.addEventListener(`click`, function(){
     decision = `deny`
+    axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-denied`, {
+        type: 'number',
+        action: '++'
+    })
     timerDIV.style.display = `none`
     denyStampDIV.style.display = `block`
     crossDIV.style.display = `none`
@@ -170,7 +189,7 @@ crossDIV.addEventListener(`click`, function(){
 })
 
 resetDIV.addEventListener(`click`, function(){
-    axios.post('https://circuslabs.net:3000/data/canosa-checkpoint-1-approved', {
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved', {
         type: 'number',
         action: '=',
         value: 0
@@ -239,8 +258,5 @@ resetDIV.addEventListener(`click`, function(){
         type: 'number',
         action: '=',
         value: 0
-    })
-    axios.get('https://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
-        console.log('here is the response data for key:', response);
     })
 })
