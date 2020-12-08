@@ -217,7 +217,6 @@ body{
 	margin-top: 5px;
 	width: 210px;
 	height: 210px;
-	transition: all 2s ease-out;
 }
 
 .booth__dialogue{
@@ -288,6 +287,22 @@ body{
 	height: 50%;
 	border: 5px dashed #ac9809;
 	margin: 12.5px 0px;
+}
+
+.passport__deny-stamp{
+	margin: 1vh 1vw;
+	font-size: 4rem;
+	text-align:center;
+	color: red;
+	display: none;
+}
+
+.passport__approve-stamp{
+	margin: 0vh 1vw 2vh;
+	font-size: 4rem;
+	text-align:center;
+	color: green;
+	display: none;
 }
 
 .passport__heading{
@@ -480,13 +495,17 @@ body{
 	flex-direction: column;
 	font-size: 0.875rem;
 	width: 286px;
-	height: 100%;
+	height: 83%;
 }
 
 .resolution__heading{
 	text-align: center;
 	font-size: 1.125rem;
 	margin-bottom: 15px;
+}
+
+.resolution__text{
+	line-height: 1.4;
 }
 
 .resolution__bottom{
@@ -532,7 +551,7 @@ body{
 }
 
 .proceed{
-	margin: 0px auto 55px;
+	margin: 0px auto 45px;
 	background-color: blue;
 	color: white;
 	font-size: 0.875rem;

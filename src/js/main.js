@@ -29,8 +29,14 @@ let antegriaBookFIGURE = document.querySelector(`.cities__book_antegria`)
 let journalDIV = document.querySelector(`.cities__display`)
 let journalCountryH2 = document.querySelector(`.cities__country`)
 let journalEntryLIS = document.querySelectorAll(`.cities__entry`)
+let denyStampDIV = document.querySelector(`.passport__deny-stamp`)
+let approveStampDIV = document.querySelector(`.passport__approve-stamp`)
+let resolutionSECTION = document.querySelector(`.resolution`)
+let resolutionP = document.querySelector(`.resolution__text`)
+let resetDIV = document.querySelector(`.booth__reset`)
 
-var decision = `none`;
+var decision = `none`
+var level = 1
 
 let displayCount = function(number){
     timerDIV.textContent = number
@@ -38,7 +44,8 @@ let displayCount = function(number){
 
 let autoDeny = function(){
     if(decision === `none`){
-        console.log(`You have denied entry`)
+        decision = `deny`
+        resolveLevel()
     }
 }
 
@@ -72,6 +79,19 @@ let levelOne = function(){
     issP.textContent = `Lorndaz`
     expP.textContent = `25.11.1982`
     passportNoP.textContent = `Q1E1P-PMGVA`
+}
+
+let resolveLevel = function(){
+    if(level === 1){
+        if(decision ===`deny`){
+            resolutionP.textContent = `"You obviously need to have your eyes checked. You'll hear from my superiors about this." The man leaves in a huff with a threatening glare.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Thank you." The man proceeds beyond the checkpoint with an authoritative air about him.`
+        }
+        decision = `none`
+
+    }
 }
 
 passportDIV.addEventListener(`click`, function(){
@@ -133,4 +153,94 @@ antegriaBookFIGURE.addEventListener(`click`, function(){
     journalEntryLIS[0].textContent = `• Marmero`
     journalEntryLIS[1].textContent = `• Glorian`
     journalEntryLIS[2].textContent = `• Grouse`
+})
+
+crossDIV.addEventListener(`click`, function(){
+    decision = `deny`
+    timerDIV.style.display = `none`
+    denyStampDIV.style.display = `block`
+    crossDIV.style.display = `none`
+    checkDIV.style.display = `none`
+    setTimeout(function(){
+        passportSECTION.style.display = `none`
+        denyStampDIV.style.display = `none`
+        resolutionSECTION.style.display = `flex`
+        resolveLevel()
+    }, 1000);
+})
+
+resetDIV.addEventListener(`click`, function(){
+    axios.post('https://circuslabs.net:3000/data/canosa-checkpoint-1-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-2-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-2-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-3-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-3-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-4-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-4-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-5-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-5-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-6-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-6-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-7-approved', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-7-denied', {
+        type: 'number',
+        action: '=',
+        value: 0
+    })
+    axios.get('https://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
+        console.log('here is the response data for key:', response);
+    })
 })
