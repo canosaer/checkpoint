@@ -37,24 +37,29 @@ let resetDIV = document.querySelector(`.booth__reset`)
 let numberDeniedP = document.querySelector(`.aggregate__number-denied`)
 let numberApprovedP = document.querySelector(`.aggregate__number-approved`)
 let approvedBarDIV = document.querySelector(`.aggregate__approved-bar`)
+let dialogueP = document.querySelector(`.booth__dialogue`)
+let proceedBUTTON = document.querySelector(`.proceed`)
 
 var decision = `none`
 var level = 1
 var approved = 0
 var denied = 0
+var autoDenyLevel = 0
 
 let displayCount = function(number){
     timerDIV.textContent = number
 }
 
 let autoDeny = function(){
-    if(decision === `none`){
+    if(decision === `none` && autoDenyLevel===level){
         decision = `deny`
-        resolveLevel()
+        dialogueP.textContent = ``
+        denyEntrant()
     }
 }
 
 let startTimer = function(){
+    autoDenyLevel = level
     timerDIV.textContent = `60`
     
     let j = 0
@@ -73,17 +78,35 @@ let updatePhoto = function(photo){
     photoFIGURE.style.backgroundPosition = `center`
 }
 
-let levelOne = function(){
+let displayLevel = function(){
     startTimer()
-    entrantFIGURE.style.background = `url(dist/img/entrants/fur_hat.png)`
-    updatePhoto(`url(dist/img/photos/big_forehead_photo.png)`)
-    passportCountryP.textContent = `Obristan`
-    nameP.textContent = `Ludum, Dari`
-    dobP.textContent = `10.08.1946`
-    sexP.textContent = `M`
-    issP.textContent = `Lorndaz`
-    expP.textContent = `25.11.1982`
-    passportNoP.textContent = `Q1E1P-PMGVA`
+    console.log(level)
+    if (level === 1){
+        entrantFIGURE.style.background = `url(dist/img/entrants/fur_hat.png)`
+        dialogueP.textContent = `"I'm returning from official business abroad."`
+        updatePhoto(`url(dist/img/photos/big_forehead_photo.png)`)
+        passportCountryP.textContent = `Obristan`
+        nameP.textContent = `Ludum, Dari`
+        dobP.textContent = `10.08.1946`
+        sexP.textContent = `M`
+        issP.textContent = `Lorndaz`
+        expP.textContent = `25.11.1982`
+        passportNoP.textContent = `Q1E1P-PMGVA`
+    }
+    else if (level === 2){
+        entrantFIGURE.style.background = `url(dist/img/entrants/green_shirt.png)`
+        entrantFIGURE.style.height = `190px`
+        entrantFIGURE.style.marginTop = `25px`
+        dialogueP.textContent = `"I'm returning from official business abroad."`
+        updatePhoto(`url(dist/img/photos/brunette_lady_photo.png)`)
+        passportCountryP.textContent = `Antegria`
+        nameP.textContent = `Escalli, Marie`
+        dobP.textContent = `12.12.1953`
+        sexP.textContent = `F`
+        issP.textContent = `Marmero`
+        expP.textContent = `20.05.1990`
+        passportNoP.textContent = `Z3F1O-ESTWQ`
+    }
 }
 
 let resolveLevel = function(){
@@ -102,11 +125,30 @@ let resolveLevel = function(){
         axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
             approved = response.data.data.value
             numberApprovedP.textContent = approved
-            let approvedWidth = (approved / (approved+denied))*100
-            approvedBarDIV.style.width = `${approvedWidth}%`
         })
-        
+        totalResponses = approved+denied
+        let approvedWidth = (approved / totalResponses)*100
+        approvedBarDIV.style.width = `${approvedWidth}%`
     }
+    level++
+}
+
+let denyEntrant = function(){
+    decision = `deny`
+    axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-denied`, {
+        type: 'number',
+        action: '++'
+    })
+    timerDIV.style.display = `none`
+    denyStampDIV.style.display = `block`
+    crossDIV.style.display = `none`
+    checkDIV.style.display = `none`
+    setTimeout(function(){
+        passportSECTION.style.display = `none`
+        denyStampDIV.style.display = `none`
+        resolutionSECTION.style.display = `flex`
+        resolveLevel()
+    }, 1000);
 }
 
 passportDIV.addEventListener(`click`, function(){
@@ -127,7 +169,7 @@ beginBUTTON.addEventListener(`click`, function(){
     introSECTION.style.display = `none`
     topRowSECTION.style.display = 'flex'
     referenceSECTION.style.display = `flex`
-    levelOne()
+    displayLevel()
 })
 
 citiesH1.addEventListener(`click`, function(){
@@ -170,23 +212,48 @@ antegriaBookFIGURE.addEventListener(`click`, function(){
     journalEntryLIS[2].textContent = `• Grouse`
 })
 
-crossDIV.addEventListener(`click`, function(){
-    decision = `deny`
-    axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-denied`, {
+crossDIV.addEventListener(`click`, denyEntrant)
+
+checkDIV.addEventListener(`click`, function(){
+    decision = `approve`
+    axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-approved`, {
         type: 'number',
         action: '++'
     })
     timerDIV.style.display = `none`
-    denyStampDIV.style.display = `block`
+    approveStampDIV.style.display = `block`
     crossDIV.style.display = `none`
     checkDIV.style.display = `none`
+    dialogueP.textContent = ``
     setTimeout(function(){
         passportSECTION.style.display = `none`
-        denyStampDIV.style.display = `none`
+        approveStampDIV.style.display = `none`
         resolutionSECTION.style.display = `flex`
         resolveLevel()
     }, 1000);
 })
+
+proceedBUTTON.addEventListener(`click`, function(){
+    resolutionSECTION.style.display = `none`
+    passportSECTION.style.display = `flex`
+    passportSECTION.style.opacity = `0`
+    displayLevel()
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 resetDIV.addEventListener(`click`, function(){
     axios.post('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved', {
