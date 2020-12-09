@@ -4,7 +4,7 @@ let beginBUTTON = document.querySelector(`.begin`)
 let introSECTION = document.querySelector(`.intro`)
 let topRowSECTION = document.querySelector(`.top-row`)
 let referenceSECTION = document.querySelector(`.reference`)
-let timerDIV = document.querySelector(`.timer`)
+let allTimerDIVS = document.querySelectorAll(`.timer`)
 let entrantFIGURE = document.querySelector(`.booth__entrant`)
 let photoFIGURE = document.querySelector(`.passport__photo`)
 let passportCountryP = document.querySelector(`.passport__country`)
@@ -47,7 +47,7 @@ var denied = 0
 var autoDenyLevel = 0
 
 let displayCount = function(number){
-    timerDIV.textContent = number
+    allTimerDIVS[level-1].textContent = number
 }
 
 let autoDeny = function(){
@@ -60,7 +60,8 @@ let autoDeny = function(){
 
 let startTimer = function(){
     autoDenyLevel = level
-    timerDIV.textContent = `60`
+    allTimerDIVS[level-1].textContent = `60`
+    allTimerDIVS[level-1].style.display = `block`
     
     let j = 0
 
@@ -107,6 +108,62 @@ let displayLevel = function(){
         expP.textContent = `20.05.1990`
         passportNoP.textContent = `Z3F1O-ESTWQ`
     }
+    else if (level === 3){
+        entrantFIGURE.style.background = `url(dist/img/entrants/grumpy_lady.png)`
+        entrantFIGURE.style.height = `190px`
+        entrantFIGURE.style.marginTop = `25px`
+        dialogueP.textContent = `"I am returning from a funeral in Kolechia."`
+        updatePhoto(`url(dist/img/photos/grumpy_lady_photo.png)`)
+        passportCountryP.textContent = `Obristan`
+        nameP.textContent = `Katsenja, Elisa`
+        dobP.textContent = `22.01.1930`
+        sexP.textContent = `F`
+        issP.textContent = `Mergerous`
+        expP.textContent = `01.10.1985`
+        passportNoP.textContent = `J6L6N-WGAZL`
+    }
+    else if (level === 4){
+        entrantFIGURE.style.background = `url(dist/img/entrants/moustaced_immigrant.png)`
+        entrantFIGURE.style.height = `190px`
+        entrantFIGURE.style.marginTop = `25px`
+        dialogueP.textContent = `"I'm here for work."`
+        updatePhoto(`url(dist/img/photos/vengeful_father_photo.png)`)
+        passportCountryP.textContent = `Kolechia`
+        nameP.textContent = `Kallo, Kordon`
+        dobP.textContent = `19.06.1952`
+        sexP.textContent = `M`
+        issP.textContent = `Altan`
+        expP.textContent = `14.02.1987`
+        passportNoP.textContent = `1A2B3-ZYXWV`
+    }
+    else if (level === 5){
+        entrantFIGURE.style.background = `url(dist/img/entrants/sad_lady.png)`
+        entrantFIGURE.style.height = `190px`
+        entrantFIGURE.style.marginTop = `25px`
+        dialogueP.textContent = `"I have urgent business in Mergerous."`
+        updatePhoto(`url(dist/img/photos/sad_lady_photo.png)`)
+        passportCountryP.textContent = `Antegria`
+        nameP.textContent = `Piersovska, Shae`
+        dobP.textContent = `18.12.1951`
+        sexP.textContent = `F`
+        issP.textContent = `Glorian`
+        expP.textContent = `12.11.1982`
+        passportNoP.textContent = `B2X5H-YPEQI`
+    }
+    else if (level === 6){
+        entrantFIGURE.style.background = `url(dist/img/entrants/village_woman.png)`
+        entrantFIGURE.style.height = `190px`
+        entrantFIGURE.style.marginTop = `25px`
+        dialogueP.textContent = `"I am returning to my village."`
+        updatePhoto(`url(dist/img/photos/village_woman_photo.png)`)
+        passportCountryP.textContent = `Obristan`
+        nameP.textContent = `Graire, Stepheni`
+        dobP.textContent = `16.02.1944`
+        sexP.textContent = `F`
+        issP.textContent = `Fardesto`
+        expP.textContent = `09.03.1988`
+        passportNoP.textContent = `V7L2U-DWAPS`
+    }
 }
 
 let resolveLevel = function(){
@@ -129,10 +186,8 @@ let resolveLevel = function(){
                 approvedBarDIV.style.width = `${approvedWidth}%`
             })
         })
-        
-        
     }
-    if(level === 2){
+    else if(level === 2){
         if(decision ===`deny`){
             resolutionP.textContent = `"Dude, not cool." The man staggers out of the booth.`
         }
@@ -152,19 +207,103 @@ let resolveLevel = function(){
             })
         })
     }
+    else if(level === 3){
+        if(decision ===`deny`){
+            resolutionP.textContent = `"You are a terrible person." The woman leaves the booth with a look of confusion and anger.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Thank you, dear." The woman leaves the booth with a long face and proceeds past the checkpoint.`
+        }
+        decision = `none`
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-3-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-3-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
+        })
+    }
+    else if(level === 4){
+        if(decision ===`deny`){
+            resolutionP.textContent = `The man grumbles something about being ripped off and leaves the booth.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Excellent! Thank you very much." The man leaves and goes beyond the checkpoint with a smile on his face.`
+        }
+        decision = `none`
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-4-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-4-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
+        })
+    }
+    else if(level === 5){
+        if(decision ===`deny`){
+            resolutionP.textContent = `"Sorry, my mistake." The woman leaves the booth with an embarassed look.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Have a nice day." The woman solemnly proceeds past the checkpoint.`
+        }
+        decision = `none`
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-5-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-5-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
+        })
+    }
+    else if(level === 6){
+        if(decision ===`deny`){
+            resolutionP.textContent = `The woman moves to detonate a bomb cleverly concealed beneath her clothes, but is tackled by security and dragged away.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Glory to Obristan." The woman leaves the booth and cautiously makes her way through the checkpoint.`
+        }
+        decision = `none`
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-6-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-6-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
+        })
+        proceedBUTTON.textContent = `Play Again`
+        level = 0;
+    }
     level++
 }
 
 let denyEntrant = function(){
+    autoDenyLevel++
     decision = `deny`
     axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-denied`, {
         type: 'number',
         action: '++'
     })
-    timerDIV.style.display = `none`
+    allTimerDIVS[level-1].style.display = `none`
     denyStampDIV.style.display = `block`
     crossDIV.style.display = `none`
     checkDIV.style.display = `none`
+    dialogueP.textContent = ``
     setTimeout(function(){
         passportSECTION.style.display = `none`
         denyStampDIV.style.display = `none`
@@ -237,12 +376,13 @@ antegriaBookFIGURE.addEventListener(`click`, function(){
 crossDIV.addEventListener(`click`, denyEntrant)
 
 checkDIV.addEventListener(`click`, function(){
+    autoDenyLevel++
     decision = `approve`
     axios.post(`http://circuslabs.net:3000/data/canosa-checkpoint-${level}-approved`, {
         type: 'number',
         action: '++'
     })
-    timerDIV.style.display = `none`
+    allTimerDIVS[level-1].style.display = `none`
     approveStampDIV.style.display = `block`
     crossDIV.style.display = `none`
     checkDIV.style.display = `none`

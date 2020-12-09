@@ -210,6 +210,10 @@ body{
 	position: relative;
 }
 
+.timer{
+	display: none;
+}
+
 .booth__entrant{
 	/* background: url(../../dist/img/entrants/fur_hat.png); */
 	background-size: cover;
