@@ -121,14 +121,16 @@ let resolveLevel = function(){
         axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied').then(function (response) {
             denied = response.data.data.value
             numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
         })
-        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
-            approved = response.data.data.value
-            numberApprovedP.textContent = approved
-        })
-        totalResponses = approved+denied
-        let approvedWidth = (approved / totalResponses)*100
-        approvedBarDIV.style.width = `${approvedWidth}%`
+        
+        
     }
     if(level === 2){
         if(decision ===`deny`){
@@ -138,17 +140,17 @@ let resolveLevel = function(){
             resolutionP.textContent = `"Thanks bro!" The man gives you a sly wink and stumbles from the booth past the checkpoint.`
         }
         decision = `none`
-        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied').then(function (response) {
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-2-denied').then(function (response) {
             denied = response.data.data.value
             numberDeniedP.textContent = denied
+            axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-2-approved').then(function (response) {
+                approved = response.data.data.value
+                numberApprovedP.textContent = approved
+                totalResponses = approved+denied
+                let approvedWidth = (approved / totalResponses)*100
+                approvedBarDIV.style.width = `${approvedWidth}%`
+            })
         })
-        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
-            approved = response.data.data.value
-            numberApprovedP.textContent = approved
-        })
-        totalResponses = approved+denied
-        let approvedWidth = (approved / totalResponses)*100
-        approvedBarDIV.style.width = `${approvedWidth}%`
     }
     level++
 }
