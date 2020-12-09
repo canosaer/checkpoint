@@ -97,7 +97,7 @@ let displayLevel = function(){
         entrantFIGURE.style.background = `url(dist/img/entrants/green_shirt.png)`
         entrantFIGURE.style.height = `190px`
         entrantFIGURE.style.marginTop = `25px`
-        dialogueP.textContent = `"I'm returning from official business abroad."`
+        dialogueP.textContent = `"I heard there's a cool party in Lorndaz tonight."`
         updatePhoto(`url(dist/img/photos/brunette_lady_photo.png)`)
         passportCountryP.textContent = `Antegria`
         nameP.textContent = `Escalli, Marie`
@@ -116,6 +116,26 @@ let resolveLevel = function(){
         }
         else if(decision ===`approve`){
             resolutionP.textContent = `"Thank you." The man proceeds beyond the checkpoint with an authoritative air about him.`
+        }
+        decision = `none`
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied').then(function (response) {
+            denied = response.data.data.value
+            numberDeniedP.textContent = denied
+        })
+        axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-approved').then(function (response) {
+            approved = response.data.data.value
+            numberApprovedP.textContent = approved
+        })
+        totalResponses = approved+denied
+        let approvedWidth = (approved / totalResponses)*100
+        approvedBarDIV.style.width = `${approvedWidth}%`
+    }
+    if(level === 2){
+        if(decision ===`deny`){
+            resolutionP.textContent = `"Dude, not cool." The man staggers out of the booth.`
+        }
+        else if(decision ===`approve`){
+            resolutionP.textContent = `"Thanks bro!" The man gives you a sly wink and stumbles from the booth past the checkpoint.`
         }
         decision = `none`
         axios.get('http://circuslabs.net:3000/data/canosa-checkpoint-1-denied').then(function (response) {
