@@ -4,7 +4,7 @@ let beginBUTTON = document.querySelector(`.begin`)
 let introSECTION = document.querySelector(`.intro`)
 let topRowSECTION = document.querySelector(`.top-row`)
 let referenceSECTION = document.querySelector(`.reference`)
-let allTimerDIVS = document.querySelectorAll(`.timer`)
+let timerDIV = document.querySelector(`.timer`)
 let entrantFIGURE = document.querySelector(`.booth__entrant`)
 let photoFIGURE = document.querySelector(`.passport__photo`)
 let passportCountryP = document.querySelector(`.passport__country`)
@@ -45,31 +45,47 @@ var level = 1
 var approved = 0
 var denied = 0
 var autoDenyLevel = 0
+var timerRunning = false
 
 let displayCount = function(number){
-    allTimerDIVS[level-1].textContent = number
+    timerDIV.textContent = number
 }
 
 let autoDeny = function(){
-    if(decision === `none` && autoDenyLevel===level){
-        decision = `deny`
-        dialogueP.textContent = ``
-        denyEntrant()
-    }
+
+    decision = `deny`
+    dialogueP.textContent = ``
+    denyEntrant()
+
 }
 
 let startTimer = function(){
     autoDenyLevel = level
-    allTimerDIVS[level-1].textContent = `60`
-    allTimerDIVS[level-1].style.display = `block`
-    
-    let j = 0
-
-    for (let i=60;i>=0;i--){
-        setTimeout(displayCount, (j*1000), i)
-        setTimeout(autoDeny, 60000)
-	    j++
+    timerDIV.textContent = `60`
+    if (!timerRunning) i=59
+    if (timerRunning) i=60
+    timerDIV.style.display = `block`
+    if (!timerRunning){
+            timerRunning = true
+            setInterval(function(){
+            if(decision === `none` && i === 0 && autoDenyLevel===level){
+                i=-1
+                autoDeny()
+            }
+            else if(decision === `none`){
+                timerDIV.textContent = i.toString()
+                i--
+            }
+        }, 1000);
     }
+    
+    // let j = 0
+
+    // for (let i=60;i>=0;i--){
+    //     setTimeout(displayCount, (j*1000), i)
+    //     setTimeout(autoDeny, 60000)
+	//     j++
+    // }
 }
 
 let updatePhoto = function(photo){
@@ -81,8 +97,8 @@ let updatePhoto = function(photo){
 
 let displayLevel = function(){
     startTimer()
-    console.log(level)
     if (level === 1){
+        proceedBUTTON.textContent = `Next Entrant`
         entrantFIGURE.style.background = `url(dist/img/entrants/fur_hat.png)`
         dialogueP.textContent = `"I'm returning from official business abroad."`
         updatePhoto(`url(dist/img/photos/big_forehead_photo.png)`)
@@ -299,7 +315,7 @@ let denyEntrant = function(){
         type: 'number',
         action: '++'
     })
-    allTimerDIVS[level-1].style.display = `none`
+    timerDIV.style.display = `none`
     denyStampDIV.style.display = `block`
     crossDIV.style.display = `none`
     checkDIV.style.display = `none`
@@ -382,7 +398,7 @@ checkDIV.addEventListener(`click`, function(){
         type: 'number',
         action: '++'
     })
-    allTimerDIVS[level-1].style.display = `none`
+    timerDIV.style.display = `none`
     approveStampDIV.style.display = `block`
     crossDIV.style.display = `none`
     checkDIV.style.display = `none`
